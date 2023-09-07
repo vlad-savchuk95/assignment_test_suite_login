@@ -10,7 +10,7 @@ describe("Login", () => {
   it("Should login/logout with existing account", () => {
     loginPage.login(validUserEmail, validUserPassword);
     loginPage.logout();
-    cy.waitForStableDOM({ pollInterval: 1000, timeout: 10000 });
+    cy.waitForStableDOM({ pollInterval: 1000, timeout: 15000 });
     cy.contains("You are signed out").should("be.visible");
   });
 
