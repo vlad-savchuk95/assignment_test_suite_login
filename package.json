@@ -1,0 +1,14 @@
+{
+  "name": "assignment_test_suite_login",
+  "version": "1.0.0",
+  "scripts": {
+    "test:Login:chrome": "cypress run --spec cypress/e2e/login/login.cy.js --browser chrome",
+    "test:Login:electron": "cypress run --spec cypress/e2e/login/login.cy.js --browser electron",
+    "install:dependencies": "npm install"
+  },
+  "devDependencies": {
+    "cypress": "^13.1.0",
+    "cypress-wait-for-stable-dom": "^0.1.0",
+    "mochawesome": "^7.1.3"
+  }
+}
