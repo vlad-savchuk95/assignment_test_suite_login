@@ -9,8 +9,9 @@ describe("Login", () => {
 
   it("Should login/logout with existing account", () => {
     loginPage.login(validUserEmail, validUserPassword);
+    cy.url().should("include", "customer/account/");
     loginPage.logout();
-    cy.waitForStableDOM({ pollInterval: 1000, timeout: 15000 });
+    cy.waitForStableDOM({ pollInterval: 1000, timeout: 10000 });
     cy.contains("You are signed out").should("be.visible");
   });
 
@@ -45,6 +46,15 @@ describe("Login", () => {
     loginPage.errorPasswordText.should(
       "have.text",
       "This is a required field."
+    );
+  });
+  it("Should reset password via 'Forgot Your Password?'", () => {
+    loginPage.forgotPasswordButton.click();
+    loginPage.resetEmailInput.type(validUserEmail);
+    loginPage.resetPasswordButton.click();
+    loginPage.successMessageText.should(
+      "have.text",
+      `\nIf there is an account associated with ${validUserEmail} you will receive an email with a link to reset your password.\n`
     );
   });
 });
